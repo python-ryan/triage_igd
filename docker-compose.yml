@@ -18,8 +18,10 @@ services:
       - triage-network
 
   mongo:
-    image: mongo:6.0
+    image: mongo:7.0
     container_name: triage-mongo
+    security_opt:
+      - seccomp=unconfined
     restart: unless-stopped
     ports:
       - "27018:27017"
