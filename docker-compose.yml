@@ -14,8 +14,8 @@ services:
     volumes:
       - ./:/app:rw
     restart: unless-stopped
-    # networks:
-    #   - triage-network
+    networks:
+      - triage-network
 
   mongo:
     image: mongo:7.0
@@ -29,8 +29,8 @@ services:
       - mongo-data:/data/db
     environment:
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE:-triage}
-    # networks:
-    #   - triage-network
+    networks:
+      - triage-network
   # nginx:
   #   image: nginx:1.25
   #   container_name: triage-nginx
@@ -42,8 +42,8 @@ services:
   #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
   #   restart: unless-stopped
 
-# networks:
-#   triage-network:
+networks:
+  triage-network:
 
 volumes:
   mongo-data:
