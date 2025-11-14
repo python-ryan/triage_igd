@@ -18,7 +18,7 @@ services:
       - triage-network
 
   mongo:
-    image: mongo:7.0
+    image: mongo:6.0
     container_name: triage-mongo
     restart: unless-stopped
     ports:
@@ -29,17 +29,16 @@ services:
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE:-triage}
     networks:
       - triage-network
-
-  nginx:
-    image: nginx:1.25
-    container_name: triage-nginx
-    depends_on:
-      - app
-    ports:
-      - "88:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-    restart: unless-stopped
+  # nginx:
+  #   image: nginx:1.25
+  #   container_name: triage-nginx
+  #   depends_on:
+  #     - app
+  #   ports:
+  #     - "88:80"
+  #   volumes:
+  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+  #   restart: unless-stopped
 
 networks:
   triage-network:
