@@ -5,10 +5,10 @@ services:
     build: .
     container_name: triage-app
     env_file: .env
-    depends_on:
-      - mongo
-    environment:
-      MONGO_URI: mongodb://mongo:27017/triage
+    # depends_on:
+    #   - mongo
+    # environment:
+    #   MONGO_URI: mongodb://mongo:27017/triage
     ports:
       - "8000:8000"
     volumes:
@@ -17,20 +17,20 @@ services:
     networks:
       - triage-network
 
-  mongo:
-    image: mongo:7.0
-    container_name: triage-mongo
-    security_opt:
-      - apparmor=unconfined
-    restart: unless-stopped
-    ports:
-      - "27018:27017"
-    volumes:
-      - mongo-data:/data/db
-    environment:
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE:-triage}
-    networks:
-      - triage-network
+  # mongo:
+  #   image: mongo:7.0
+  #   container_name: triage-mongo
+  #   security_opt:
+  #     - apparmor=unconfined
+  #   restart: unless-stopped
+  #   ports:
+  #     - "27018:27017"
+  #   volumes:
+  #     - mongo-data:/data/db
+  #   environment:
+  #     MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE:-triage}
+  #   networks:
+  #     - triage-network
   # nginx:
   #   image: nginx:1.25
   #   container_name: triage-nginx
