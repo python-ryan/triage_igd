@@ -94,7 +94,7 @@ async def ask_stream_gpt(user_msg: str, session: dict, norm: str):
         payload = {"event": "message_chunk", "delta": ch}
         tokenFormat = f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
         yield tokenFormat
-        await asyncio.sleep(0.03)
+        await asyncio.sleep(0.05)
 
     yield f"data: {json.dumps({'event': 'stream_end'})}\n\n"
     yield "data: [DONE]\n\n"
